@@ -14,7 +14,7 @@ namespace AddressBookSystem
         {
             Contacts contact1 = new Contacts()
             {
-               
+
                 FirstName = "Sangram",
                 LastName = "Keshari",
                 Address = "bhadrak",
@@ -26,7 +26,7 @@ namespace AddressBookSystem
             };
             Contacts contact2 = new Contacts()
             {
-               
+
                 FirstName = "Biki",
                 LastName = "Behera",
                 Address = "Banglore",
@@ -119,5 +119,35 @@ namespace AddressBookSystem
                 Console.WriteLine("Name is Not Exist");
             }
         }
+        public void DeleteContact()
+        {
+            Contacts delete = new Contacts();
+            Console.WriteLine("To Delete Contact  Enter The FirstName");
+            string FirstName = Console.ReadLine();
+            foreach (var contact in addressBook)
+            {
+
+                if (contact.FirstName.Equals(FirstName))
+                {
+                    delete = contact;
+                }
+            }
+            addressBook.Remove(delete);
+            Console.WriteLine("\nContact Deleted Successfully\n");
+            Display();
+        }
+        public void AddMultipleContacts(int n)
+        {
+
+            while (n > 0)
+            {
+                CreateContact();
+                n--;
+            }
+
+        }
+
+
     }
 }
+    

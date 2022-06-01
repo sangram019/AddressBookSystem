@@ -31,6 +31,9 @@ namespace AddressBook
                         addContact.DeleteContact();
                         break;
                     case 5:
+                        addContact.AddMultipleContacts();
+                        break;
+                    case 6:
                         end = false;
                         Console.WriteLine("Program Is Ended");
                         break;
