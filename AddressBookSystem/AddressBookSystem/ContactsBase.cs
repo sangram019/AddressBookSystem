@@ -1,8 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 namespace AddressBookSystem
 {
-    public class Contacts
-    { 
+    public class ContactsBase
+    {
         public string ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

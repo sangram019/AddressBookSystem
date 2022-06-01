@@ -1,64 +1,56 @@
-﻿using System;
+﻿using AddressBookSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBookSystem
+namespace AddressBook
 {
-    public class Addressbook
+    public class AddressBook
     {
         List<Contacts> addressBook = new List<Contacts>();
+        public Dictionary<string, List<Contacts>> dict = new Dictionary<string, List<Contacts>>();
         Contacts contact = new Contacts();
-        public Addressbook()
-        {
-            Contacts contact1 = new Contacts()
-            {
 
-                FirstName = "Sangram",
-                LastName = "Keshari",
-                Address = "bhadrak",
-                Email = "SkB@gmail.com",
-                PhoneNumber = "9087567743",
-                City = "Bbsr",
-                State = "Odisha",
-                ZipCode = "756137"
-            };
-            Contacts contact2 = new Contacts()
-            {
 
-                FirstName = "Biki",
-                LastName = "Behera",
-                Address = "Banglore",
-                Email = "bikicool@gmail.com",
-                PhoneNumber = "90404080",
-                City = "bANGLORE",
-                State = "karnataka",
-                ZipCode = "560037"
-            };
-            addressBook.Add(contact1);
-            addressBook.Add(contact2);
-        }
         public void CreateContact()
         {
-            Console.WriteLine("Enter Your ID: ");
-            contact.ID = Console.ReadLine();
-            Console.WriteLine("Enter Your First: ");
+            Contacts contact = new Contacts();
+
+            int Flag = 0;
+            Console.WriteLine("Enter the First name :");
             contact.FirstName = Console.ReadLine();
-            Console.WriteLine("Enter Your Last Name: ");
-            contact.LastName = Console.ReadLine();
-            Console.WriteLine("Enter Your Address: ");
-            contact.Address = Console.ReadLine();
-            Console.WriteLine("Enter Your Email Id: ");
-            contact.Email = Console.ReadLine();
-            Console.WriteLine("Enter Your PhoneNumber: ");
-            contact.PhoneNumber = Console.ReadLine();
-            Console.WriteLine("Enter Your City: ");
-            contact.City = Console.ReadLine();
-            Console.WriteLine("Enter Your State: ");
-            contact.State = Console.ReadLine();
-            Console.WriteLine("Enter Your Zip Code: ");
-            contact.ZipCode = Console.ReadLine();
+            string FirstNameToBeAdded = contact.FirstName;
+            foreach (var data in addressBook)
+            {
+                if (addressBook.Exists(data => data.FirstName == FirstNameToBeAdded))
+                {
+                    Flag++;
+                    Console.WriteLine("This FirstName already Exist! Can't take the Duplicate Record.");
+                    break;
+                }
+            }
+            if (Flag == 0)
+            {
+                Console.WriteLine("Enter Your ID: ");
+                contact.ID = Console.ReadLine();
+                Console.WriteLine("Enter Your Last Name: ");
+                contact.LastName = Console.ReadLine();
+                Console.WriteLine("Enter Your Address: ");
+                contact.Address = Console.ReadLine();
+                Console.WriteLine("Enter Your Email Id: ");
+                contact.Email = Console.ReadLine();
+                Console.WriteLine("Enter Your PhoneNumber: ");
+                contact.PhoneNumber = Console.ReadLine();
+                Console.WriteLine("Enter Your City: ");
+                contact.City = Console.ReadLine();
+                Console.WriteLine("Enter Your State: ");
+                contact.State = Console.ReadLine();
+                Console.WriteLine("Enter Your Zip Code: ");
+                contact.ZipCode = Console.ReadLine();
+
+            }
             addressBook.Add(contact);
         }
         public void Display()
@@ -112,28 +104,28 @@ namespace AddressBookSystem
                         string zipCode = Console.ReadLine();
                         contact.ZipCode = zipCode;
                         break;
+                    default:
+                        Console.WriteLine("Enter Correct option");
+                        break;
                 }
             }
-            else
-            {
-                Console.WriteLine("Name is Not Exist");
-            }
+            Console.WriteLine("\nEdit Successfully\n");
+            Display();
         }
         public void DeleteContact()
         {
             Contacts delete = new Contacts();
-            Console.WriteLine("To Delete Contact  Enter The FirstName");
+            Console.WriteLine("To Delete Contact List Enter FirstName");
             string FirstName = Console.ReadLine();
             foreach (var contact in addressBook)
             {
-
                 if (contact.FirstName.Equals(FirstName))
                 {
                     delete = contact;
                 }
             }
             addressBook.Remove(delete);
-            Console.WriteLine("\nContact Deleted Successfully\n");
+            Console.WriteLine("\nContact Deleted SuccessFully\n");
             Display();
         }
         public void AddMultipleContacts(int n)
@@ -144,8 +136,8 @@ namespace AddressBookSystem
                 CreateContact();
                 n--;
             }
-
         }
+
         public void AddUniqueName()
         {
             Console.WriteLine("Enter the Firstname to Add Unique Name");
@@ -175,7 +167,7 @@ namespace AddressBookSystem
 
         public void DisplayUniqueName()
         {
-            Console.WriteLine("Enter the Unique Name of your contacts");
+            Console.WriteLine("Enter the Uniquename of your contacts");
             string name = Console.ReadLine();
 
             foreach (var Contact in dict)
@@ -184,14 +176,17 @@ namespace AddressBookSystem
                 {
                     foreach (var contact in Contact.Value)
                     {
+                        Console.WriteLine("Enter ID : " + contact.ID);
                         Console.WriteLine("Enter First Name: " + contact.FirstName);
                         Console.WriteLine("Enter Last Name: " + contact.LastName);
                         Console.WriteLine("Enter Address: " + contact.Address);
+                        Console.WriteLine("Enter Email: " + contact.Email);
+                        Console.WriteLine("Enter Phone Number: " + contact.PhoneNumber);
                         Console.WriteLine("Enter City: " + contact.City);
                         Console.WriteLine("Enter State: " + contact.State);
                         Console.WriteLine("Enter Zip: " + contact.ZipCode);
-                        Console.WriteLine("Enter Phone Number: " + contact.PhoneNumber);
-                        Console.WriteLine("Enter Email: " + contact.Email);
+
+
                         return;
                     }
                 }
@@ -202,7 +197,7 @@ namespace AddressBookSystem
             }
         }
 
-
     }
+
+
 }
-    
