@@ -146,6 +146,61 @@ namespace AddressBookSystem
             }
 
         }
+        public void AddUniqueName()
+        {
+            Console.WriteLine("Enter the Firstname to Add Unique Name");
+            string name = Console.ReadLine();
+            foreach (var data in addressBook)
+            {
+                if (addressBook.Contains(data))
+                {
+                    if (data.FirstName == name)
+                    {
+                        Console.WriteLine("Please Enter an Unique Name");
+                        string uniquename = Console.ReadLine();
+                        if (dict.ContainsKey(uniquename))
+                        {
+                            Console.WriteLine("This unique name already exists");
+                        }
+                        dict.Add(uniquename, addressBook);
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine("This Contact doesn't Exist");
+            return;
+
+        }
+
+
+        public void DisplayUniqueName()
+        {
+            Console.WriteLine("Enter the Unique Name of your contacts");
+            string name = Console.ReadLine();
+
+            foreach (var Contact in dict)
+            {
+                if (Contact.Key.Contains(name))
+                {
+                    foreach (var contact in Contact.Value)
+                    {
+                        Console.WriteLine("Enter First Name: " + contact.FirstName);
+                        Console.WriteLine("Enter Last Name: " + contact.LastName);
+                        Console.WriteLine("Enter Address: " + contact.Address);
+                        Console.WriteLine("Enter City: " + contact.City);
+                        Console.WriteLine("Enter State: " + contact.State);
+                        Console.WriteLine("Enter Zip: " + contact.ZipCode);
+                        Console.WriteLine("Enter Phone Number: " + contact.PhoneNumber);
+                        Console.WriteLine("Enter Email: " + contact.Email);
+                        return;
+                    }
+                }
+
+
+
+
+            }
+        }
 
 
     }
