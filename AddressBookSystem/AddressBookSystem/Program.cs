@@ -52,13 +52,3 @@ namespace AddressBook
         }
     }
 }
-
-namespace AddressBookSystem
-{
-    public class Contacts
-    {
-        public Contacts()
-        {
-        }
-    }
-}
